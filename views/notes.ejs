@@ -27,17 +27,25 @@
       <div class="row">
         <div class="col-4 list-container">
           <div class="card">
-            <ul class="list-group"></ul>
+            <ul class="list-group">
+              <%locals.noteList.forEach(oneNote => {%>
+                <li style="display:flex; justify-content: space-between;"><span id=<%=oneNote.id%>onclick="getNote(this.id)"><%=oneNote.title%></span><button class="deleteBtn" onclick="deleteNote('<%=oneNote.id%>')">Delete</button></li>
+              <%})%>
+            </ul>
           </div>
         </div>
         <div class="col-8">
           <input
+            onkeyup="checkText()"
+            id="titleField"
+            name="noteTitle"
             class="note-title"
             placeholder="Note Title"
             maxlength="28"
             type="text"
+            value=<%=locals.title%>
           />
-          <textarea class="note-textarea" placeholder="Note Text"></textarea>
+          <textarea onkeyup="checkText()" name="noteText" class="note-textarea" placeholder="Note Text"><%=locals.text%></textarea>
         </div>
       </div>
     </div>

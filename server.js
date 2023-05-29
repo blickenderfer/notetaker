@@ -39,3 +39,13 @@ app.get("/notes/:id", (req, res) =>{
         }
     }
 })
+
+app.post("/notes", (req, res) =>{
+    let dbNotes = JSON.parse(fs.readFileSync("./db/db.json"))
+    let newNote = req.body
+    newNote.id = id.v1()
+    dbNotes.push(newNote)
+    fs.writeFileSync("db/db.json", json.stringify(dbNotes))
+    let dbFile = JSON.parse(fs.readFileSync("./db/db.json"))
+    res.render("notes", {noteList:dbFile})
+})

@@ -12,3 +12,14 @@ function getNote(id){
 function deleteNote(){
     console.log("connected")
 }
+
+function saveNote(){
+    let noteTitle = document.getElementById("titleField").value
+    let noteText = document.getElementById("textField").value
+    let noteObject = {title:noteTitle, text:noteText}
+    fetch("/notes", {
+        method: "POST", 
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(noteObject)
+    })
+}

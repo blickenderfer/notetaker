@@ -29,7 +29,7 @@
           <div class="card">
             <ul class="list-group">
               <%locals.noteList.forEach(oneNote => {%>
-                <li style="display:flex; justify-content: space-between;"><span id=<%=oneNote.id%>onclick="getNote(this.id)"><%=oneNote.title%></span><button class="deleteBtn" onclick="deleteNote('<%=oneNote.id%>')">Delete</button></li>
+                <li style="display:flex; justify-content: space-between;"><span id=<%=oneNote.id%> onclick="getNote(this.id)"><%=oneNote.title%></span><button class="deleteBtn" onclick="deleteNote('<%=oneNote.id%>')">Delete</button></li>
               <%})%>
             </ul>
           </div>
@@ -49,6 +49,6 @@
         </div>
       </div>
     </div>
-    <script src="/assets/js/index.js"></script>
+    <script src="/index.js"></script>
   </body>
 </html>

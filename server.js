@@ -11,3 +11,7 @@ console.log("Connected to port " + port);
 app.use(express.urlencoded({
     extended: true
 }))
+
+app.use(express.json());
+app.use(express.static("public"));
+app.set("view engine", "ejs");

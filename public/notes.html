@@ -19,7 +19,7 @@
     <nav class="navbar bg-info">
       <a class="navbar-brand text-light p-3" href="/">Note Taker </a>
       <div class="icons">
-        <i class="fas fa-save text-light save-note"></i>
+        <i class="fas fa-save text-light save-note" onclick="saveNote()"></i>
         <i class="fas fa-plus text-light new-note"></i>
       </div>
     </nav>
@@ -28,9 +28,7 @@
         <div class="col-4 list-container">
           <div class="card">
             <ul class="list-group">
-              <%locals.noteList.forEach(oneNote => {%>
-                <li style="display:flex; justify-content: space-between;"><span id=<%=oneNote.id%> onclick="getNote(this.id)"><%=oneNote.title%></span><button class="deleteBtn" onclick="deleteNote('<%=oneNote.id%>')">Delete</button></li>
-              <%})%>
+              
             </ul>
           </div>
         </div>
@@ -43,12 +41,12 @@
             placeholder="Note Title"
             maxlength="28"
             type="text"
-            value=<%=locals.title%>
+           
           />
-          <textarea onkeyup="checkText()" name="noteText" class="note-textarea" placeholder="Note Text"><%=locals.text%></textarea>
+          <textarea onkeyup="checkText()" id="textField" name="noteText" class="note-textarea" placeholder="Note Text"></textarea>
         </div>
       </div>
     </div>
-    <script src="/index.js"></script>
+    <script src="./assets/js/index.js"></script>
   </body>
 </html>

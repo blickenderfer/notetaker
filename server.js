@@ -4,7 +4,7 @@ const id = require("uuid");
 const fs = require("fs"); 
 const path = require("path");
 const app = express();
-const PORT = process.env.PORT || 4002
+const PORT = process.env.PORT || 4003
 
 //this means the URL accepts encoded characters
 app.use(express.urlencoded({
@@ -33,13 +33,19 @@ res.json(dbNotes)
 //this is an api route that adds a new route to the db.json
 app.post("/api/notes", (req, res) =>{
     let dbNotes = JSON.parse(fs.readFileSync("./db/db.json"))
-    let newNote = req.body
-    console.log(newNote);
-    newNote.id = id.v1()
+    console.log("post",req.body)
+    let { title, text } = req.body
+    if (req.body && req.body.title){
+    const newNote = {
+        title: title,
+        text: text,
+        id: id.v1()
+    }
     dbNotes.push(newNote)
     fs.writeFileSync("db/db.json", JSON.stringify(dbNotes))
-    let dbFile = JSON.parse(fs.readFileSync("./db/db.json"))
-    res.json(dbNotes)   
+    // let dbFile = JSON.parse(fs.readFileSync("./db/db.json"))
+    res.json(dbNotes)
+}   
 })
 //this removes a note from db.json
 app.delete("/api/notes/:id", (req, res)=>{
